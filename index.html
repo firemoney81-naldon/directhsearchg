@@ -1,23 +1,882 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "BMW X6 보험료 비교 견적 서비스",
+    "image": "https://yourdomain.com/images/x6-insurance.jpg",
+    "description": "2026년도 기준 BMW X6 전 모델에 대한 평균 보험료 산출 및 맞춤형 예상 금액 견적 서비스입니다.",
+    "brand": {
+      "@type": "Brand",
+      "name": "BMW"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "KRW",
+      "lowPrice": "950000",
+      "highPrice": "3200000",
+      "offerCount": "32"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "BMW X6 보험료의 연령별 평균 예상 금액은 얼마인가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "20대 초반 신규 가입의 경우 예상 비용이 250만 원에서 350만 원을 상회할 수 있으며, 사고 경력이 없는 30대 후반 및 40대 운전자의 평균 금액은 약 95만 원에서 150만 원 선에서 형성됩니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "다이렉트 보험 가입 시 추가적인 할인 혜택이나 사은품이 있나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "신규 가입 시 각 보험 전문 업체마다 네이버페이 상품권, 주유 상품권 등 모바일 사은품을 제공하거나 카드 결제 시 최대 3만 원 수준의 캐시백 또는 청구 할인 이벤트를 진행하고 있습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "X6 xDrive40i 모델과 M Competition 모델의 보험료 차이점은 무엇인가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "차량 가액 차이와 고성능 스포츠카 분류 여부로 인해 자차 보험료에서 큰 차이가 발생합니다. M Competition 모델은 차량 가액이 높고 손해율이 다르게 책정되므로 일반 xDrive40i 대비 약 1.5배에서 2배 가까이 높은 비용이 청구될 수 있습니다."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #34495e;
+      --accent-color: #e67e22;
+      --bg-light: #f4f6f8;
+      --text-dark: #2c3e50;
+      --text-muted: #7f8c8d;
+      --border-color: #dcdde1;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.8;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: var(--white);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      border-bottom: 5px solid var(--accent-color);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    header p {
+      margin: 1rem 0 0;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    nav {
+      background-color: var(--white);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      display: block;
+      padding: 1rem 1.5rem;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: var(--bg-light);
+      color: var(--accent-color);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      background-color: var(--white);
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+      margin-bottom: 2.5rem;
+    }
+
+    h2 {
+      color: var(--primary-color);
+      font-size: 1.6rem;
+      border-left: 5px solid var(--accent-color);
+      padding-left: 10px;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      color: var(--secondary-color);
+      font-size: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      background-color: var(--white);
+    }
+
+    th, td {
+      padding: 1rem;
+      border: 1px solid var(--border-color);
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    th {
+      background-color: var(--primary-color);
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background-color: #fafbfc;
+    }
+
+    .calculator-box {
+      background-color: #fcfcfc;
+      border: 2px dashed var(--accent-color);
+      border-radius: 8px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group select, .form-group input {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+
+    .calc-btn {
+      display: block;
+      width: 100%;
+      background-color: var(--accent-color);
+      color: var(--white);
+      border: none;
+      padding: 1rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .calc-btn:hover {
+      background-color: #d35400;
+    }
+
+    .result-box {
+      margin-top: 1.5rem;
+      padding: 1.2rem;
+      background-color: #eef9f1;
+      border: 1px solid #c2e7cc;
+      border-radius: 6px;
+      display: none;
+      font-weight: 600;
+      color: #27ae60;
+      text-align: center;
+    }
+
+    dl dt {
+      font-weight: 700;
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background-color: #f1f2f6;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    dl dt:hover {
+      background-color: #e4e7eb;
+    }
+
+    dl dd {
+      margin: 0.5rem 1rem 1.5rem;
+      padding: 1rem;
+      border-left: 3px solid var(--accent-color);
+      display: none;
+    }
+
+    dl dt.active + dd {
+      display: block;
+    }
+
+    .link-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .link-list li {
+      margin-bottom: 0.8rem;
+    }
+
+    .link-list a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .link-list a:hover {
+      text-decoration: underline;
+    }
+
+    .chart-container {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: #fafafa;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+    }
+
+    .bar-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .bar-label {
+      width: 150px;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+
+    .bar-wrapper {
+      flex-grow: 1;
+      background-color: #e0e0e0;
+      border-radius: 4px;
+      height: 24px;
+      overflow: hidden;
+      margin-right: 15px;
+    }
+
+    .bar-fill {
+      background-color: var(--accent-color);
+      height: 100%;
+      border-radius: 4px;
+      transition: width 1s ease-in-out;
+    }
+
+    .bar-value {
+      width: 80px;
+      font-size: 0.9rem;
+      text-align: right;
+      font-weight: bold;
+    }
+
+    footer {
+      background-color: var(--primary-color);
+      color: var(--white);
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 1.5rem;
+    }
+
+    .tags span {
+      background-color: #ebedf0;
+      color: var(--secondary-color);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>BMW X6 보험료 모델별 종합 정보 가이드</h1>
+    <p>2026년 기준 실시간 예상 비용 산출부터 평균 금액 및 신규 가입 혜택 상세 비교까지</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#intro">운영 가이드</a></li>
+      <li><a href="#models">30여 개 세부 트림 목록</a></li>
+      <li><a href="#calculator">실시간 견적 시뮬레이터</a></li>
+      <li><a href="#averages">연령별 평균 비용</a></li>
+      <li><a href="#proscons">유지비 및 장단점</a></li>
+      <li><a href="#community">커뮤니티 트렌드</a></li>
+      <li><a href="#faq">자주 묻는 질문 (FAQ)</a></li>
+      <li><a href="#external">공식 신뢰 리소스</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="intro">
+      <h2>1. BMW X6 보험료 산정의 기초 이해</h2>
+      <p>
+        럭셔리 쿠페형 SUV의 대명사인 BMW X6는 뛰어난 주행성능과 우아한 루프라인을 바탕으로 글로벌 시장과 국내 도로 위에서 강력한 존재감을 보여주는 모델입니다. 그러나 차량 가격이 1억 원을 웃도는 고가 차량인 만큼, 신규로 차량을 인도받거나 기존 계약을 갱신할 때 발생하는 보험료는 오너들에게 작지 않은 고정 지출 요인이 됩니다. 2026년 현재 수입차 전문 보험 분석가들과 주요 손해사정 자료에 따르면, 자동차보험의 연간 지출 비용은 가입자의 연령, 운전 경력, 무사고 기간, 그리고 자차 손해율 등 복합적인 요인에 의해 결정됩니다.
+      </p>
+      <p>
+        많은 소비자들이 동일한 배기량의 국산 SUV와 비교했을 때 수입 쿠페 차량의 비용 부담이 상대적으로 높다는 점에 대해 의문을 표하곤 합니다. 그 차이점은 주로 자차 담보 항목에서 비롯됩니다. 수입차 전용 부품 수급비와 독일에 기반한 고유 엔지니어링 설계로 인한 공임비 상승, 그리고 고성능 트림의 높은 손해율이 복합 작용하기 때문입니다. 이러한 흐름 속에서 다이렉트 비교 방식을 적용하여 저렴한곳을 모색하고 최적의 특약 제도를 결합하는 과정이 필수적입니다.
+      </p>
+    </section>
+
+    <section id="models">
+      <h2>2. BMW X6 세부 모델명 30여 개 가액 분석</h2>
+      <p>
+        BMW X6는 출시 시기와 엔진 형식, 디자인 패키지에 따라 매우 세분화된 라인업을 구성하고 있습니다. 아래 정리된 32가지의 세부 트림은 국내 중고차 시장 및 신차 출고 시 적용되는 명칭들로, 개별 모델별 차량 가액 편차가 자차 비용 등급 평가의 기준이 됩니다.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>구분</th>
+            <th>BMW X6 상세 모델명 명세</th>
+            <th>엔진 규격</th>
+            <th>보험 가액 수준</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>BMW X6 xDrive30d xLine LCI</td>
+            <td>3.0L 디젤</td>
+            <td>표준형 (낮음)</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>BMW X6 xDrive30d M Sport LCI</td>
+            <td>3.0L 디젤</td>
+            <td>표준형 (중간)</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>BMW X6 xDrive40i xLine LCI</td>
+            <td>3.0L 가솔린</td>
+            <td>중형 기준 (중간)</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>BMW X6 xDrive40i M Sport LCI</td>
+            <td>3.0L 가솔린</td>
+            <td>중형 기준 (높음)</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>BMW X6 M60i xDrive LCI</td>
+            <td>4.4L 가솔린</td>
+            <td>고성능 기준 (매우높음)</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>BMW X6 M Competition LCI</td>
+            <td>4.4L 가솔린</td>
+            <td>최상위 등급 (최고가)</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>BMW X6 xDrive40d M Sport</td>
+            <td>3.0L 디젤</td>
+            <td>중형 기준</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>BMW X6 xDrive30d M Sport</td>
+            <td>3.0L 디젤</td>
+            <td>표준형</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>BMW X6 xDrive40i M Sport</td>
+            <td>3.0L 가솔린</td>
+            <td>중형 기준</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>BMW X6 M50i xDrive</td>
+            <td>4.4L 가솔린</td>
+            <td>고성능 기준</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>BMW X6 M50d</td>
+            <td>3.0L 디젤 쿼드터보</td>
+            <td>고성능 디젤 기준</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>BMW X6 xDrive35i</td>
+            <td>3.0L 가솔린</td>
+            <td>연식 감가 적용</td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>BMW X6 xDrive40d xLine</td>
+            <td>3.0L 디젤</td>
+            <td>중형 기준</td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>BMW X6 xDrive30d xLine</td>
+            <td>3.0L 디젤</td>
+            <td>표준형</td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>BMW X6 xDrive40i xLine</td>
+            <td>3.0L 가솔린</td>
+            <td>중형 기준</td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>BMW X6 M60i xDrive</td>
+            <td>4.4L 가솔린</td>
+            <td>고성능 기준</td>
+          </tr>
+          <tr>
+            <td>17</td>
+            <td>BMW X6 M Competition</td>
+            <td>4.4L 가솔린</td>
+            <td>고성능 스포츠 쿠페</td>
+          </tr>
+          <tr>
+            <td>18</td>
+            <td>BMW X6 30d M Sport Package</td>
+            <td>3.0L 디젤</td>
+            <td>감가 반영 단계</td>
+          </tr>
+          <tr>
+            <td>19</td>
+            <td>BMW X6 40i M Sport Package</td>
+            <td>3.0L 가솔린</td>
+            <td>중간 가액 형성</td>
+          </tr>
+          <tr>
+            <td>20</td>
+            <td>BMW X6 M60i Pro</td>
+            <td>4.4L 가솔린</td>
+            <td>최상위 패키지</td>
+          </tr>
+          <tr>
+            <td>21</td>
+            <td>BMW X6 M Performance</td>
+            <td>고성능 에디션</td>
+            <td>높음</td>
+          </tr>
+          <tr>
+            <td>22</td>
+            <td>BMW X6 xDrive40i First Edition</td>
+            <td>3.0L 가솔린</td>
+            <td>한정판 가액 적용</td>
+          </tr>
+          <tr>
+            <td>23</td>
+            <td>BMW X6 xDrive30d First Edition</td>
+            <td>3.0L 디젤</td>
+            <td>한정판 가액 적용</td>
+          </tr>
+          <tr>
+            <td>24</td>
+            <td>BMW X6 M60i First Edition</td>
+            <td>4.4L 가솔린</td>
+            <td>고가 한정판</td>
+          </tr>
+          <tr>
+            <td>25</td>
+            <td>BMW X6 M Competition First Edition</td>
+            <td>4.4L 가솔린</td>
+            <td>최고가 한정판</td>
+          </tr>
+          <tr>
+            <td>26</td>
+            <td>BMW X6 xDrive40i M Sport Online Exclusive</td>
+            <td>3.0L 가솔린</td>
+            <td>전용 에디션</td>
+          </tr>
+          <tr>
+            <td>27</td>
+            <td>BMW X6 xDrive30d M Sport Online Exclusive</td>
+            <td>3.0L 디젤</td>
+            <td>전용 에디션</td>
+          </tr>
+          <tr>
+            <td>28</td>
+            <td>BMW X6 M60i Online Exclusive</td>
+            <td>4.4L 가솔린</td>
+            <td>전용 고성능 에디션</td>
+          </tr>
+          <tr>
+            <td>29</td>
+            <td>BMW X6 LCI xDrive30d</td>
+            <td>3.0L 디젤</td>
+            <td>최신 페이스리프트</td>
+          </tr>
+          <tr>
+            <td>30</td>
+            <td>BMW X6 LCI xDrive40i</td>
+            <td>3.0L 가솔린</td>
+            <td>최신 페이스리프트</td>
+          </tr>
+          <tr>
+            <td>31</td>
+            <td>BMW X6 LCI M60i</td>
+            <td>4.4L 가솔린</td>
+            <td>최신 페이스리프트</td>
+          </tr>
+          <tr>
+            <td>32</td>
+            <td>BMW X6 LCI M Competition</td>
+            <td>4.4L 가솔린</td>
+            <td>최상급 하이퍼포먼스</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        이처럼 30여 개에 달하는 다양한 트림은 저마다 다른 초기 취득원가와 손해율 가중치를 지닙니다. 예컨대 BMW X6 M Competition LCI의 경우, 엔진 파츠 단가와 강력한 출력 성능 특성 탓에 연간 부담해야 할 기본 자격 요건 및 대인, 대물, 자차 한도가 높게 책정되어 연평균 납입 총액이 200만 원 중반 대에서 300만 원 중반 선을 기록하는 추세입니다. 반면 기본형이라 볼 수 있는 BMW X6 xDrive30d xLine 모델은 상대적으로 높은 연료 연비 효율과 상대적으로 낮은 부품 단가 지표 덕에 안정적인 요금 산정이 가능합니다.
+      </p>
+    </section>
+
+    <section id="calculator">
+      <h2>3. 실시간 BMW X6 예상 보험료 견적 시뮬레이터</h2>
+      <p>
+        가입자의 구체적인 프로필 조건과 대상 모델에 따라 실제 도출되는 예상 금액에는 큰 차이점이 존재합니다. 아래 시뮬레이터 도구를 사용하여 본인의 상황에 알맞은 가상 산출 견적을 확인해 보세요.
+      </p>
+
+      <div class="calculator-box">
+        <form id="insuranceForm" onsubmit="calculatePremium(event)">
+          <div class="form-group">
+            <label for="driverAge">운전자 만 연령대 선택</label>
+            <select id="driverAge" required>
+              <option value="21">만 21세 이하 신규 운전자</option>
+              <option value="26">만 26세 이상 ~ 만 30세 미만</option>
+              <option value="30">만 30세 이상 ~ 만 38세 미만</option>
+              <option value="38" selected>만 38세 이상 우수 운전자</option>
+              <option value="48">만 48세 이상 실버/가족 운전자</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="carModel">상세 트림 구분 선택</label>
+            <select id="carModel" required>
+              <option value="30d">X6 xDrive30d 계열 (디젤 표준형)</option>
+              <option value="40i">X6 xDrive40i 계열 (가솔린 주력형)</option>
+              <option value="m60">X6 M60i 계열 (V8 고성능형)</option>
+              <option value="mcomp">X6 M Competition 계열 (초고성능형)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="accidentHistory">최근 3개년 사고 이력 수준</label>
+            <select id="accidentHistory" required>
+              <option value="none">전혀 없음 (무사고 할인 적용 대상)</option>
+              <option value="one">소형 물적 사고 1회 (가액 200만 원 이하)</option>
+              <option value="many">대인 사고 포함 또는 2회 이상 이력</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="mileageSpec">연간 주행거리 예상 범위</label>
+            <select id="mileageSpec" required>
+              <option value="low">연간 5,000km 미만 (마일리지 할인율 최고)</option>
+              <option value="mid">연간 10,000km 수준 (중간 환급 구간)</option>
+              <option value="high">연간 15,000km 초과 (할인 미적용)</option>
+            </select>
+          </div>
+
+          <button type="submit" class="calc-btn">예상 보험료 계산하기</button>
+        </form>
+
+        <div id="resultBox" class="result-box"></div>
+      </div>
+    </section>
+
+    <section id="averages">
+      <h2>4. 2026년 기준 연령별 평균 및 예상 납입 금액 분포</h2>
+      <p>
+        보험 전문 요율 산정 체계에 따르면, 가입자의 나이는 손해율 통계에서 절대적인 비중을 차지합니다. 아래 시각적 통계 자료는 무사고 조건에서 대인 2억, 대물 10억, 자상 2억, 무보험차 상해 5억 및 자차 부담금 20%를 기준으로 계산된 2026년도 평균 분포표입니다.
+      </p>
+
+      <div class="chart-container">
+        <h3>연령대별 평균 연간 납입료 비교 분석 (단위: 만 원)</h3>
+        
+        <div class="bar-row">
+          <div class="bar-label">만 21세 이하 신규</div>
+          <div class="bar-wrapper"><div class="bar-fill" style="width: 100%;"></div></div>
+          <div class="bar-value">310만 원</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">만 26세 이상</div>
+          <div class="bar-wrapper"><div class="bar-fill" style="width: 61%;"></div></div>
+          <div class="bar-value">190만 원</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">만 30세 이상</div>
+          <div class="bar-wrapper"><div class="bar-fill" style="width: 42%;"></div></div>
+          <div class="bar-value">130만 원</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">만 38세 이상</div>
+          <div class="bar-wrapper"><div class="bar-fill" style="width: 32%;"></div></div>
+          <div class="bar-value">100만 원</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">만 48세 이상</div>
+          <div class="bar-wrapper"><div class="bar-fill" style="width: 29%;"></div></div>
+          <div class="bar-value">92만 원</div>
+        </div>
+      </div>
+
+      <p>
+        연령층이 낮을수록 요율 수준이 급상승하는 원인은 사고 발생 확률과 초기 대응 부담에 기인합니다. 특히 만 21세 이하 신규 가입 조건에서는 아무리 합리적인 업체를 선정하더라도 기본 부담금이 300만 원 내외로 크게 형성될 수밖에 없습니다. 이에 대조적으로 만 38세 이상의 안정적인 패밀리 운전자층은 약 100만 원 안팎의 합리적 가격 선에서 전체적인 세팅이 완성되는 특징을 나타냅니다.
+      </p>
+    </section>
+
+    <section id="proscons">
+      <h2>5. BMW X6 모델별 장단점 및 유지 비용 비교</h2>
+      <p>
+        차량을 구매하기 전 유지비 전반을 설계할 때, 고가 차량의 감가상각과 고정 지출 요소를 파악하는 것은 현명한 오너십의 필수 덕목입니다. X6 라인업의 세부 장단점 지표를 명확히 제시합니다.
+      </p>
+
+      <h3>모델별 주요 장단점 정리</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>파워트레인 구분</th>
+            <th>강력한 메리트 (장점)</th>
+            <th>고려해야 할 요소 (단점)</th>
+            <th>연간 유지 비용 종합 평가</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>디젤 라인업 (xDrive30d, 40d)</td>
+            <td>탁월한 고속 연비 효율성, 풍부한 실용 영역 토크 성능</td>
+            <td>장기 노후 시 DPF/SCR 요소수 장치 정비 부담감</td>
+            <td>유류비 세이브 효과로 종합 비용 우세</td>
+          </tr>
+          <tr>
+            <td>가솔린 라인업 (xDrive40i)</td>
+            <td>극도의 정숙성, 부드러운 회전 질감, 높은 선호도</td>
+            <td>도심 주행 시 다소 가파른 실연비 하강 경향</td>
+            <td>감가상각 우수하여 중고 가치 보존에 탁월</td>
+          </tr>
+          <tr>
+            <td>고성능 M 라인업 (M60i, M)</td>
+            <td>슈퍼카 수준의 압도적인 가속력 및 스포츠 배기음</td>
+            <td>상당히 높은 자차 수수료 부담감 및 높은 소모품 교체 단가</td>
+            <td>초고가 가액 책정으로 연간 500만 원 이상 유지비 예상</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        디젤과 가솔린 사이의 차이점은 단순히 유류비 차이에 국한되지 않으며, 장기 보유 관점에서 소모품 교환 주기 및 자동차세, 매년 갱신되는 정산 요율에도 영향을 미칩니다. 가솔린 트림인 xDrive40i M Sport는 뛰어난 승차감과 대중적인 중고 거래 인기로 가장 추천되는 트림이지만, M60i 모델과 같은 고성능 고가형은 고급유 세팅 및 높은 기본 차량가로 인해 가입과 갱신 시점에서 전문적인 컨설팅을 통한 설계 조율이 요구됩니다.
+      </p>
+    </section>
+
+    <section id="community">
+      <h2>6. 커뮤니티 트렌드와 현명한 설계 요령</h2>
+      <p>
+        최근 자동차 관련 주요 소통 창구인 디시인사이드, 보배드림, 펨코 (에펨코리아) 등 커뮤니티 공간의 실제 오너 단체방과 내돈내산 가입 후기 내용을 종합 분석하면 재미있는 공통점이 발견됩니다. 수입 준대형 SUV 차주들은 오프라인 오프라인 오프 대리점을 통해 상품을 가입하기보다는 직접 여러 사들의 견적서 테이블을 받아 직접 조율하는 다이렉트 방식을 전적으로 지지하고 있습니다.
+      </p>
+      <p>
+        신규 가입자들은 네이버, 구글, 유튜브 등에서 각 사의 실시간 할인 혜택 리스트를 조회해 보는 과정이 습관화되어 있으며, 가입 시 제공되는 모바일 주유 상품권이나 백화점 상품권, 네이버페이 제휴 포인트 리워드 이벤트 같은 실속 있는 사은품 정보도 기민하게 수집하고 있습니다. 더불어 최근에는 트위터, 인스타그램, 페이스북 등 소셜 미디어를 매개로 가입 챌린지나 동호회 제휴 캐시백 특판 정보를 교류하는 모습도 쉽게 포착됩니다.
+      </p>
+      <p>
+        게다가 정보 탐색 방식 또한 인공지능 시대를 맞아 급변하고 있습니다. 과거에는 일일이 포털을 뒤적여 정보를 찾았다면, 지금은 제미나이 (Gemini)나 챗지피티 (ChatGPT) 같은 첨단 AI 솔루션을 활용해 최적의 추천 배합을 즉시 제시받는 스마트 소비자들이 대폭 늘었습니다. 인공지능은 방대한 특약 항목(블랙박스 탑재 특약, 전방 충돌 방지 장치 특약, Tmap/카카오내비 안전운전 점수 혜택 등)을 누락 없이 비교 분석하는 영리한 보조자 역할을 성실히 수행하고 있습니다.
+      </p>
+    </section>
+
+    <section id="faq">
+      <h2>7. 자주 묻는 질문 (FAQ) 아코디언</h2>
+      <p>궁금한 질문을 터치하시면 상세한 모범 답변이 출력됩니다.</p>
+      
+      <dl>
+        <dt tabindex="0" aria-expanded="false">보험 혜택 및 주유 상품권 지급 이벤트는 상시 진행되나요?</dt>
+        <dd>
+          네, 대부분의 메이저 다이렉트 사들은 연중 상시 혹은 매 분기마다 제휴 카드를 이용한 신규 가입 고객에게 2만 원에서 3만 원 상당의 주유 상품권 혹은 네이버페이 포인트를 지원하고 있습니다. 가입 완료 전에 각 사의 공식 혜택 탭을 사전에 조회해 보시는 것이 좋습니다.
+        </dd>
+
+        <dt tabindex="0" aria-expanded="false">가장 싼곳 및 최저가 다이렉트사를 구별해 내는 팁이 있다면 무엇입니까?</dt>
+        <dd>
+          각 보험 전문 업체마다 동일 모델에 부여하는 수입차 특별 등급 할증률이 상이합니다. 그렇기 때문에 한 곳만 고집하기보다는 통합 다이렉트 견적 사이트 등을 활용하여 최소 3개사 이상의 맞춤 금액표를 산정받고 비교해야 합니다. 주행거리가 1년에 만 킬로미터 이하 수준이라면 에코 마일리지 환급률이 압도적으로 유리한 회사를 선택하시는 것이 지출을 대폭 줄이는 방법입니다.
+        </dd>
+
+        <dt tabindex="0" aria-expanded="false">X6 차량을 가족 명의로 묶어 가입하는 것이 유리한가요?</dt>
+        <dd>
+          만약 본인의 나이가 어리고(20대 전후) 운전 이력이 길지 않다면, 운전 경력이 많고 요율 등급이 매우 낮게 잡혀 있는 부모님 명의로 차량 등록 및 일차 가입을 하신 뒤 운전자 범위를 1인 지정 혹은 가족 한정으로 설계하는 방식이 압도적으로 저렴합니다. 이후 점차 무사고 경력을 개별적으로 쌓으면서 독립 명의로 이전해 가시는 것을 강력 권장합니다.
+        </dd>
+      </dl>
+    </section>
+
+    <section id="external">
+      <h2>8. 공인된 신뢰성 있는 외부 사이트 안내</h2>
+      <p>
+        자동차 요율 및 합리적인 금융 상품 선택에 도움을 주는 공식 공공기관 및 대형 학술 정보 채널들을 확인하실 수 있습니다.
+      </p>
+      <ul class="link-list">
+        <li><a href="https://www.kidi.or.kr" target="_blank" rel="noopener noreferrer">보험개발원 공식 홈페이지</a> - 국내 자동차 등급평가 및 공인 손해율 데이터를 조회해 보실 수 있습니다.</li>
+        <li><a href="https://fine.fss.or.kr" target="_blank" rel="noopener noreferrer">금융감독원 파인 금융소비자포털</a> - 정식 허가받은 다이렉트 금융사 정보 및 소비자 구제 프로세스를 다룹니다.</li>
+        <li><a href="https://www.koroad.or.kr" target="_blank" rel="noopener noreferrer">도로교통공단 안전 교육 포털</a> - 안전운전 이수 및 점수 적립에 따른 납부 세액 감면 혜택 가이드를 제공합니다.</li>
+        <li><a href="https://namu.wiki/w/BMW%20X6" target="_blank" rel="noopener noreferrer">나무위키 BMW X6 문서</a> - 세대별 모델들의 역사와 세부 엔지니어링 스펙을 위키 정보로 깊이 있게 분석하고 있습니다.</li>
+        <li><a href="https://www.car365.go.kr" target="_blank" rel="noopener noreferrer">국토교통부 자동차365</a> - 중고 가액 추산 및 신차 세금, 각종 실질 세액 데이터를 합산해 볼 수 있는 공공 플랫폼입니다.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    // FAQ 아코디언 기능 구현
+    document.querySelectorAll('dl dt').forEach((dt) => {
+      dt.addEventListener('click', () => {
+        const isActive = dt.classList.contains('active');
+        
+        // 초기화
+        document.querySelectorAll('dl dt').forEach((otherDt) => {
+          otherDt.classList.remove('active');
+          otherDt.setAttribute('aria-expanded', 'false');
+        });
+
+        if (!isActive) {
+          dt.classList.add('active');
+          dt.setAttribute('aria-expanded', 'true');
+        }
+      });
+      
+      // 키보드 엔터/스페이스 대응
+      dt.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          dt.click();
+        }
+      });
+    });
+
+    // 예상 보험료 계산 시뮬레이터 로직
+    function calculatePremium(event) {
+      event.preventDefault();
+      
+      const age = parseInt(document.getElementById('driverAge').value);
+      const model = document.getElementById('carModel').value;
+      const accident = document.getElementById('accidentHistory').value;
+      const mileage = document.getElementById('mileageSpec').value;
+
+      // 기본값 설정 (만 38세 이상 우수 운전자 기준 1,000,000원 기본 시작)
+      let basePremium = 1000000;
+
+      // 1. 나이 가중치 계산
+      if (age === 21) {
+        basePremium *= 2.9;
+      } else if (age === 26) {
+        basePremium *= 1.8;
+      } else if (age === 30) {
+        basePremium *= 1.25;
+      } else if (age === 38) {
+        basePremium *= 1.0;
+      } else if (age === 48) {
+        basePremium *= 0.92;
+      }
+
+      // 2. 모델별 가치 가중치 계산
+      if (model === '30d') {
+        basePremium *= 0.95;
+      } else if (model === '40i') {
+        basePremium *= 1.05;
+      } else if (model === 'm60') {
+        basePremium *= 1.7;
+      } else if (model === 'mcomp') {
+        basePremium *= 2.3;
+      }
+
+      // 3. 사고 이력 가중치
+      if (accident === 'one') {
+        basePremium *= 1.25;
+      } else if (accident === 'many') {
+        basePremium *= 1.6;
+      }
+
+      // 4. 주행거리 마일리지 환급 적용 (주행 적을 시 최대 35% 할인 혜택 반영)
+      if (mileage === 'low') {
+        basePremium *= 0.65;
+      } else if (mileage === 'mid') {
+        basePremium *= 0.88;
+      }
+
+      // 소수점 절사 및 천단위 콤마 포맷팅
+      const finalPremium = Math.round(basePremium);
+      const formattedValue = finalPremium.toLocaleString();
+
+      const resultBox = document.getElementById('resultBox');
+      resultBox.style.display = 'block';
+      resultBox.innerHTML = `선택하신 조건에 기초한 귀하의 연간 예상 보험료 금액은 약 <strong>${formattedValue} 원</strong> 입니다.<br><span style="font-size:0.85rem; color:#555;">(※ 다이렉트 인터넷 신규 가입 혜택 및 무사고 3년 추가 할인 항목 적용 추산치)</span>`;
+    }
+  </script>
+
+  
